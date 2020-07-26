@@ -42,6 +42,7 @@ router.post('/game/:id/addquestion', async (req, res) => {
         // -------------
         qText = req.body.text
         answer = req.body.answer.replace('; ',';')
+        answer = answer.toLowerCase()
         answerOut = req.body.answerout
         orderNum = maximum
         await new Question({
@@ -83,6 +84,7 @@ router.post('/updatequestion/:id', async (req, res) => {
         question = req.params.id ? await Question.findById(req.params.id) : null
         if(question){
           answer = req.body.answer.replace('; ',';')
+            answer = answer.toLowerCase()
             question.question_text = req.body.text
             question.answer = answer
             question.answer_output = req.body.answerout
